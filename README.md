@@ -1,87 +1,97 @@
-# Sentiment Analysis with BERT Model
+# SentimentIQ — Sentiment Analysis with Transformers
 
-This project provides a Streamlit web application for sentiment analysis using a pre-trained BERT model from the Hugging Face Transformers library. The model predicts the sentiment of a given text as either positive or negative.
+A sleek, transformer powered sentiment analysis web app built with **DistilBERT** and **Streamlit**. Enter any text and instantly get a **Positive**, **Negative**, or **Neutral** prediction with confidence scores.
 
-## Table of Contents
-- [Installation](#installation)
-- [Usage](#usage)
-- [Example Texts](#example-texts)
-- [Screenshots](#screenshots)
-- [Dataset Information](#dataset-information)
-- [Acknowledgements](#acknowledgements)
+# Features
 
-## Installation
+- Real-time sentiment prediction (Positive / Negative / Neutral)
+- Confidence probability bars for each prediction
+- Custom dark-themed UI with modern design
+- Fast inference using DistilBERT (lightweight BERT variant)
+- Runs fully locally no API keys needed
 
-To run this project, you need to have Python installed. We recommend using a virtual environment to manage dependencies.
+# Tech Stack
 
-1. **Clone the repository**:
-    ```sh
-    git clone <repository-url>
-    cd <repository-folder>
-    ```
+| Transformers | Pre-trained DistilBERT model |
+| PyTorch | Model inference backend |
+| Streamlit | Web app framework |
+| Python 3.10+ | Core language |
 
-2. **Create a virtual environment**:
-    ```sh
-    python -m venv env
-    source env/bin/activate  # On Windows, use `env\Scripts\activate`
-    ```
+# Project Structure
 
-3. **Install dependencies**:
-    ```sh
-    pip install -r requirements.txt
-    ```
+SentimentIQ/
+│
+├── app.py                  # Main Streamlit application
+├── requirements.txt        # Project dependencies
+├── app_screens/            # UI screenshots
+│   ├── home.PNG
+│   ├── positive.PNG
+│   ├── negative.PNG
+│   └── neutral.PNG
+└── README.md               # Project documentation
 
-## Usage
+# Installation & Setup
 
-1. **Run the Streamlit app**:
-    ```sh
-    streamlit run sentiment_analysis_app.py
-    ```
+# 1. Clone the repository
+git clone https://github.com/your-username/SentimentIQ.git
+cd SentimentIQ
 
-2. **Access the app**:
-    Open your web browser and go to `http://localhost:8501`.
+# 2. Create a virtual environment
+python -m venv venv
 
-3. **Input Text**:
-    Enter text into the provided text area and click the "Predict Sentiment" button to get the sentiment prediction.
+# Windows
+venv\Scripts\activate
 
-## Example Texts
+# Mac/Linux
+source venv/bin/activate
 
-Use the following sample texts to test the sentiment analysis:
+# 3. Install dependencies
+pip install -r requirements.txt
 
-1. **Positive Sentiment**:
-    - "I had a wonderful experience using this product. It exceeded all my expectations!"
-    - "The customer service was outstanding, and the quality of the product is top-notch."
-    - "I am extremely satisfied with my purchase. Highly recommended!"
-![Positive Sentiment](app_screens/positive.PNG)
-3. **Negative Sentiment**:
-    - "This product is terrible. It broke within a week of use and the customer service was unhelpful."
-    - "I am very disappointed with this purchase. It did not meet my expectations at all."
-    - "The quality of the product is poor, and it was not worth the money."
-![Negative Sentiment](app_screens/negative.PNG)
-4. **Neutral Sentiment**:
-    - "The product is okay, but there are better alternatives available."
-    - "It does the job, but I wouldn't go out of my way to recommend it."
-    - "The experience was neither good nor bad, it was just average."
-![Neutral Sentiment](app_screens/neutral.PNG)
-## Screenshots
 
-### Home Page
-![Home Page](app_screens/home.PNG)
+# 4. Run the app
+streamlit run app.py
 
-### Prediction Example
-![Prediction Example](app_screens/positive.PNG)
+Then open your browser at `http://localhost:8501`
 
-## Dataset Information
+# Example Inputs
 
-The model used in this project (`assemblyai/distilbert-base-uncased-sst2`) is pre-trained on the Stanford Sentiment Treebank v2 (SST-2) dataset. The SST-2 dataset contains sentences from movie reviews, each labeled as either positive or negative sentiment.
+**Positive:**
+> "I absolutely loved this product. It exceeded every expectation!"
 
-- **Source**: Stanford Sentiment Treebank v2 (SST-2)
-- **Task**: Binary sentiment classification (positive or negative)
-- **Data**: Movie reviews from Rotten Tomatoes
-- **Labels**: Positive (1) or Negative (0)
+**Negative:**
+> "Terrible experience. The product broke within a day and support was useless."
 
-## Acknowledgements
+**Neutral:**
+> "It works fine. Nothing impressive but gets the job done."
 
-- This project uses the [Transformers](https://github.com/huggingface/transformers) library by Hugging Face.
-- The pre-trained model is provided by [AssemblyAI](https://huggingface.co/assemblyai).
-- The Streamlit library is used to create the web application.
+# Model Details
+
+- **Model:** `assemblyai/distilbert-base-uncased-sst2`
+- **Base:** DistilBERT (distilled version of BERT — 40% smaller, 60% faster)
+- **Trained on:** Stanford Sentiment Treebank v2 (SST-2)
+- **Task:** Binary sentiment classification → extended with Neutral threshold logic
+
+# Screenshots
+
+# Home Page
+![Home](app_screens/home.PNG)
+
+# Positive Prediction
+![Positive](app_screens/positive.PNG)
+
+# Negative Prediction
+![Negative](app_screens/negative.PNG)
+
+# Neutral Prediction
+![Neutral](app_screens/neutral.PNG)
+
+# Notes
+
+- First run will download the model (~250MB) from Hugging Face automatically
+- Model is cached after first load for faster subsequent runs
+- Neutral label is triggered when neither Positive nor Negative confidence exceeds 65%
+
+# License
+
+This project is open-source and available under the [MIT License](LICENSE).
